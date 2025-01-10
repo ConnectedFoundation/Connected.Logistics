@@ -1,6 +1,9 @@
 using Connected.Annotations;
-using Connected.Logictics.Documents.Receive;
-using Connected.Logictics.Documents.Receive.Dtos;
+using Connected.Logictics.Documents.Receive.PlannedItems;
+using Connected.Logictics.Documents.Receive.PlannedItems.Dtos;
+using Connected.Logictics.Documents.Receive.Posting;
+using Connected.Logictics.Documents.Receive.Posting.Items;
+using Connected.Logictics.Documents.Receive.Posting.Items.Dto;
 using Connected.Logistics.Types.SerialNumbers;
 using Connected.Notifications;
 using Connected.Services;

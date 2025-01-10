@@ -1,0 +1,18 @@
+﻿using Connected.Annotations;
+using Connected.Services;
+using System.ComponentModel.DataAnnotations;
+
+namespace Connected.Logictics.Documents.Receive.Items.Dtos;
+internal class InsertReceiveItemDto : Dto, IInsertReceiveItemDto
+{
+	[MinValue(1)]
+	public int Head { get; set; }
+
+	public double Quantity { get; set; }
+
+	[Required, MaxLength(128)]
+	public required string Entity { get; set; }
+
+	[Required, MaxLength(128)]
+	public required string EntityId { get; set; }
+}

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Connected.Sdk" Version="1.0.1-beta1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Connected.Logictics.Types.Model\Connected.Logictics.Types.Model.csproj" />
+    <ProjectReference Include="..\Connected.Logistics.Stock.Model\Connected.Logistics.Stock.Model.csproj" />
+  </ItemGroup>
+
+</Project>

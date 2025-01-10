@@ -1,12 +1,14 @@
-using Connected.Services;
+using Connected.Documents;
+using Connected.Documents.Dtos;
 
 namespace Connected.Logictics.Documents.Receive.Dtos;
 
-public interface IUpdateReceiveDocumentDto : IDto
+public interface IUpdateReceiveDocumentDto : IUpdateDocumentDto<int>
 {
 	int? Warehouse { get; set; }
 
 	int? Customer { get; set; }
 
-	DateTimeOffset? Date { get; set; }
+	DateTimeOffset? Received { get; set; }
+	DefaultDocumentStatus Status { get; set; }
 }

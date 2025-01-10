@@ -1,5 +1,6 @@
 using Connected.Annotations;
 using Connected.Logictics.Documents.Receive;
+using Connected.Logictics.Documents.Receive.Items;
 using Connected.Notifications;
 using Connected.Services;
 using Microsoft.Extensions.Logging;

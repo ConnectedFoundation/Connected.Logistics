@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Connected.Common.Extensions" Version="1.0.1-beta1" />
+    <PackageReference Include="Connected.Common.Model" Version="1.0.1-beta1" />
+    <PackageReference Include="Connected.Documents.Extensions" Version="1.0.0-beta1" />
+    <PackageReference Include="Connected.Documents.Model" Version="1.0.1-beta1" />
     <PackageReference Include="Connected.Sdk" Version="1.0.1-beta1" />
   </ItemGroup>
 

@@ -1,11 +1,11 @@
-using Connected.Entities;
+using Connected.Documents;
 
 namespace Connected.Logictics.Documents.Receive;
 
-public interface IReceiveDocument : IEntity<int>
+public interface IReceiveDocument : IDocument<int>
 {
 	int? Customer { get; init; }
-	long Document { get; init; }
-	DateTimeOffset? Date { get; init; }
+	DateTimeOffset? Received { get; init; }
 	int? Warehouse { get; init; }
+	DefaultDocumentStatus Status { get; init; }
 }

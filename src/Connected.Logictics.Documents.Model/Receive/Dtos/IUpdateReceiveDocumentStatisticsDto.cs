@@ -5,7 +5,7 @@ namespace Connected.Logictics.Documents.Receive.Dtos;
 public interface IUpdateReceiveDocumentStatisticsDto : IDto
 {
 	int Id { get; set; }
-	int ItemCount { get; init; }
-	int OpenItemCount { get; init; }
-	int PostingDocumentCount { get; init; }
+	int ItemCount { get; set; }
+	int OpenItemCount { get; set; }
+	int PostingDocumentCount { get; set; }
 }

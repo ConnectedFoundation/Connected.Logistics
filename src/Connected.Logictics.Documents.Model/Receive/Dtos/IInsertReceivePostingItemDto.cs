@@ -1,3 +1,5 @@
+using Connected.Logictics.Documents.Receive.Posting;
+using Connected.Logictics.Documents.Receive.Posting.Items.Dto;
 using Connected.Services;
 
 namespace Connected.Logictics.Documents.Receive.Dtos;
@@ -14,6 +16,6 @@ public interface IInsertReceivePostingItemDto : IDto
 	/// </summary>
 	int Head { get; set; }
 	int Location { get; set; }
-	float Quantity { get; set; }
+	double Quantity { get; set; }
 	long? Serial { get; set; }
 }

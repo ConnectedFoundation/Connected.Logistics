@@ -1,11 +1,12 @@
-using Connected.Services;
+using Connected.Documents;
+using Connected.Documents.Dtos;
 
 namespace Connected.Logictics.Documents.Receive.Dtos;
 
-public interface IInsertReceiveDocumentDto : IDto
+public interface IInsertReceiveDocumentDto : IInsertDocumentDto
 {
 	int? Warehouse { get; set; }
 	int? Customer { get; set; }
-	long Document { get; set; }
-	string? Code { get; set; }
+	DateTimeOffset? Received { get; set; }
+	DefaultDocumentStatus Status { get; set; }
 }
