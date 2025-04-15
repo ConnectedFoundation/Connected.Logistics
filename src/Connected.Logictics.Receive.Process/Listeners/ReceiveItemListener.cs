@@ -8,25 +8,21 @@ using Microsoft.Extensions.Logging;
 namespace Connected.Logictics.Receive.Listeners;
 
 [Middleware<IReceiveItemService>(ServiceEvents.Updated)]
-internal sealed class ReceiveItemListener(ILogger<ReceiveItemListener> logger, IReceiveDocumentService documents,
-	IReceiveItemService items)
+internal sealed class ReceiveItemListener(ILogger<ReceiveItemListener> logger, IReceiveDocumentService documents, IReceiveItemService items)
 	: EventListener<IPrimaryKeyDto<long>>
 {
-	private IReceiveItemService Items { get; } = items;
-
 	protected override async Task OnInvoke()
 	{
-		if (await Items.Select(Dto) is not IReceiveItem item)
+		if (await items.Select(Dto) is not IReceiveItem item)
 		{
 			logger.LogWarning("The IReceiveItem not found ({id}).", Dto.Id);
 			return;
 		}
 
-		var items = await Items.Query(Dto.CreateHead(item.Head));
+		var entities = await items.Query(Dto.CreateHead(item.Head));
+		var openCount = entities.Count(f => f.PostedQuantity < f.Quantity);
+		var props = new Dictionary<string, object?> { { nameof(IReceiveDocumentStatistics.OpenItemCount), openCount } };
 
-		await documents.Patch(Dto.CreatePatch(item.Head, new Dictionary<string, object?>
-			{
-				{nameof(IReceiveDocumentStatistics.OpenItemCount), items.Count(f=>f.PostedQuantity < f.Quantity)}
-			}));
+		await documents.Patch(Dto.CreatePatch(item.Head, props));
 	}
 }
