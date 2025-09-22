@@ -34,7 +34,7 @@ public interface IReceiveItemService
 	/// queried.</param>
 	/// <returns>The list of items that belong to the specified document.</returns>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	Task<ImmutableList<IReceiveItem>> Query(IHeadDto<int> dto);
+	Task<IImmutableList<IReceiveItem>> Query(IHeadDto<int> dto);
 	/// <summary>
 	/// Selects the <see cref="IReceiveItem"/> item for the specified id.
 	/// </summary>

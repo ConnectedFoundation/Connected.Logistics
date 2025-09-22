@@ -49,5 +49,5 @@ public interface IReceiveDocumentService
 	/// <param name="args">The arguments containing the query criteria.</param>
 	/// <returns>The list of <see cref="IReceiveDocument"/> documents that matches the search criteria.</returns>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	Task<ImmutableList<IReceiveDocument>> Query(IQueryDto? dto);
+	Task<IImmutableList<IReceiveDocument>> Query(IQueryDto? dto);
 }

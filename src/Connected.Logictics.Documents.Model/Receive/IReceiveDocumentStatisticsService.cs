@@ -10,6 +10,6 @@ public interface IReceiveDocumentStatisticsService
 {
 	Task Update(IUpdateReceiveDocumentStatisticsDto dto);
 	Task Delete(IPrimaryKeyDto<int> dto);
-	Task<ImmutableList<IReceiveDocumentStatistics>> Lookup(IPrimaryKeyListDto<int> dto);
+	Task<IImmutableList<IReceiveDocumentStatistics>> Lookup(IPrimaryKeyListDto<int> dto);
 	Task<IReceiveDocumentStatistics?> Select(IPrimaryKeyDto<int> dto);
 }

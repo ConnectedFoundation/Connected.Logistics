@@ -13,13 +13,13 @@ internal class Update(IStorageProvider storage, IReceiveDocumentStatisticsServic
 
 		if (entity is null)
 		{
-			await storage.Open<ReceiveDocumentStatistics>().Update(Dto.AsEntity<ReceiveDocumentStatistics>(State.New));
+			await storage.Open<ReceiveDocumentStatistics>().Update(Dto.AsEntity<ReceiveDocumentStatistics>(State.Add));
 
 			await events.Inserted(this, statistics, Dto.Id);
 		}
 		else
 		{
-			entity = await storage.Open<ReceiveDocumentStatistics>().Update(entity.Merge(Dto, State.Default), Dto, async () =>
+			entity = await storage.Open<ReceiveDocumentStatistics>().Update(entity.Merge(Dto, State.Update), Dto, async () =>
 			{
 				return SetState(await statistics.Select(Dto.AsDto<IPrimaryKeyDto<int>>())) as ReceiveDocumentStatistics;
 			}, Caller);

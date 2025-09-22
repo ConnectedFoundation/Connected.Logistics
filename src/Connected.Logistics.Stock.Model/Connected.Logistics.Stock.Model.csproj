@@ -7,8 +7,8 @@
     <RootNamespace>Connected.Logistics.Stock</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Connected.Sdk" Version="1.0.1-beta1" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -14,12 +14,12 @@ internal class Update(IStorageProvider storage, IReceivePlannedItemService items
 
 		if (entity is null)
 		{
-			await storage.Open<ReceivePlannedItem>().Update(Dto.AsEntity<ReceivePlannedItem>(State.New));
+			await storage.Open<ReceivePlannedItem>().Update(Dto.AsEntity<ReceivePlannedItem>(State.Add));
 			await events.Inserted(this, items, Dto.Id);
 		}
 		else
 		{
-			await storage.Open<ReceivePlannedItem>().Update(entity.Merge(Dto, State.Default), Dto, async () =>
+			await storage.Open<ReceivePlannedItem>().Update(entity.Merge(Dto, State.Update), Dto, async () =>
 			{
 				return SetState(await items.Select(Dto.AsDto<IPrimaryKeyDto<long>>()) as ReceivePlannedItem);
 			}, Caller);

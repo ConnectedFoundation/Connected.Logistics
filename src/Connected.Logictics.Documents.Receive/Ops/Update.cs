@@ -12,7 +12,7 @@ internal class Update(IStorageProvider storage, IReceiveDocumentService document
 	{
 		var existing = SetState(await documents.Select(Dto.AsDto<IPrimaryKeyDto<int>>()) as ReceiveDocument) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 
-		await storage.Open<ReceiveDocument>().Update(existing.Merge(Dto, State.Default), Dto, async () =>
+		await storage.Open<ReceiveDocument>().Update(existing.Merge(Dto, State.Update), Dto, async () =>
 		{
 			await cache.Remove(Dto.Id);
 			return SetState(await documents.Select(Dto.AsDto<IPrimaryKeyDto<int>>()) as ReceiveDocument);

@@ -18,7 +18,7 @@ internal sealed class ReceiveDocumentStatisticsService(IServiceProvider services
 		await Invoke(GetOperation<Delete>(), dto);
 	}
 
-	public async Task<ImmutableList<IReceiveDocumentStatistics>> Lookup(IPrimaryKeyListDto<int> dto)
+	public async Task<IImmutableList<IReceiveDocumentStatistics>> Lookup(IPrimaryKeyListDto<int> dto)
 	{
 		return await Invoke(GetOperation<Lookup>(), dto);
 	}

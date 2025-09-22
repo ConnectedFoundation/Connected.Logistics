@@ -33,7 +33,7 @@ internal sealed class ReceiveDocumentService(IServiceProvider services)
 		return await Invoke(GetOperation<Select>(), dto);
 	}
 
-	public async Task<ImmutableList<IReceiveDocument>> Query(IQueryDto? dto)
+	public async Task<IImmutableList<IReceiveDocument>> Query(IQueryDto? dto)
 	{
 		return await Invoke(GetOperation<Query>(), dto ?? QueryDto.NoPaging);
 	}

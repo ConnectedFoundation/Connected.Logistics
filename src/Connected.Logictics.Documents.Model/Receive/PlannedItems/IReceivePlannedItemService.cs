@@ -25,9 +25,9 @@ public interface IReceivePlannedItemService
 	Task<IReceivePlannedItem?> Select(ISelectReceivePlannedItemDto dto);
 
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	Task<ImmutableList<IReceivePlannedItem>> Query(IHeadDto<int> dto);
+	Task<IImmutableList<IReceivePlannedItem>> Query(IHeadDto<int> dto);
 
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
 	[ServiceUrl("query-by-item")]
-	Task<ImmutableList<IReceivePlannedItem>> Query(IPrimaryKeyDto<long> dto);
+	Task<IImmutableList<IReceivePlannedItem>> Query(IPrimaryKeyDto<long> dto);
 }

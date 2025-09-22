@@ -5,9 +5,9 @@ using System.Collections.Immutable;
 
 namespace Connected.Logictics.Documents.Receive.Statistics.Ops;
 internal class Lookup(IStorageProvider storage)
-	: ServiceFunction<IPrimaryKeyListDto<int>, ImmutableList<IReceiveDocumentStatistics>>
+	: ServiceFunction<IPrimaryKeyListDto<int>, IImmutableList<IReceiveDocumentStatistics>>
 {
-	protected override async Task<ImmutableList<IReceiveDocumentStatistics>> OnInvoke()
+	protected override async Task<IImmutableList<IReceiveDocumentStatistics>> OnInvoke()
 	{
 		return await storage.Open<ReceiveDocumentStatistics>().AsEntities<IReceiveDocumentStatistics>(f => Dto.Items.Any(g => g == f.Id));
 	}

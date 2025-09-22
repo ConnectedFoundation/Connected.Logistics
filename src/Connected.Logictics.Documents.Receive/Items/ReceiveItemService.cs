@@ -21,7 +21,7 @@ internal class ReceiveItemService(IServiceProvider services)
 	{
 		await Invoke(GetOperation<Delete>(), dto);
 	}
-	public async Task<ImmutableList<IReceiveItem>> Query(IHeadDto<int> dto)
+	public async Task<IImmutableList<IReceiveItem>> Query(IHeadDto<int> dto)
 	{
 		return await Invoke(GetOperation<Query>(), dto);
 	}

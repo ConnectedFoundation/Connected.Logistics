@@ -27,11 +27,11 @@ internal sealed class ReceivePlannedItemService(IServiceProvider services) : Ser
 		return Invoke(GetOperation<SelectByEntity>(), dto);
 	}
 
-	public async Task<ImmutableList<IReceivePlannedItem>> Query(IHeadDto<int> dto)
+	public async Task<IImmutableList<IReceivePlannedItem>> Query(IHeadDto<int> dto)
 	{
 		return await Invoke(GetOperation<Query>(), dto);
 	}
-	public async Task<ImmutableList<IReceivePlannedItem>> Query(IPrimaryKeyDto<long> dto)
+	public async Task<IImmutableList<IReceivePlannedItem>> Query(IPrimaryKeyDto<long> dto)
 	{
 		return await Invoke(GetOperation<QueryByItem>(), dto);
 	}

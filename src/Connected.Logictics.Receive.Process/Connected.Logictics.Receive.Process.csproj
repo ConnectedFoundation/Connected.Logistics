@@ -1,21 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <RootNamespace>Connected.Logictics.Receive</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Connected.Logictics.Receive</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Connected.Sdk" Version="1.0.1-beta1" />
-	  <PackageReference Include="Connected.Core.Services.Extensions" Version="1.0.3-beta1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Connected.Logictics.Documents.Model\Connected.Logictics.Documents.Model.csproj" />
-    <ProjectReference Include="..\Connected.Logictics.Types.Model\Connected.Logictics.Types.Model.csproj" />
-    <ProjectReference Include="..\Connected.Logistics.Stock.Model\Connected.Logistics.Stock.Model.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
+		<ProjectReference Include="..\Connected.Logictics.Documents.Model\Connected.Logictics.Documents.Model.csproj" />
+		<ProjectReference Include="..\Connected.Logictics.Types.Model\Connected.Logictics.Types.Model.csproj" />
+		<ProjectReference Include="..\Connected.Logistics.Stock.Model\Connected.Logistics.Stock.Model.csproj" />
+	</ItemGroup>
 
 </Project>

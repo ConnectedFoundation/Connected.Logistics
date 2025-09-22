@@ -11,7 +11,7 @@ internal class Delete(IStorageProvider storage, IReceiveDocumentStatisticsServic
 	{
 		_ = SetState(await statistics.Select(Dto.AsDto<IPrimaryKeyDto<int>>()) as ReceiveDocumentStatistics) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 
-		await storage.Open<ReceiveDocumentStatistics>().Update(Dto.AsEntity<ReceiveDocumentStatistics>(State.Deleted));
+		await storage.Open<ReceiveDocumentStatistics>().Update(Dto.AsEntity<ReceiveDocumentStatistics>(State.Delete));
 		await events.Deleted(this, statistics, Dto.Id);
 	}
 }

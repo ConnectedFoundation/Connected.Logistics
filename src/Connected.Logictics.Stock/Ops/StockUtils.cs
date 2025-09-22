@@ -49,7 +49,7 @@ internal static class StockUtils
 			 * Thus we should have a unique constraint on the entity ensuring only one request will win, all the others
 			 * lose. This also means the provider owning the entity must support unique constraints.
 			 */
-			var entity = await storage.Open<Stock>().Update(dto.AsEntity<Stock>(State.New)) ?? throw new NullReferenceException("Stock entity not found.");
+			var entity = await storage.Open<Stock>().Update(dto.AsEntity<Stock>(State.Add)) ?? throw new NullReferenceException("Stock entity not found.");
 
 			return await stock.Select(Dto.Factory.CreatePrimaryKey(entity.Id)) ?? throw new NullReferenceException(nameof(IStock));
 		});

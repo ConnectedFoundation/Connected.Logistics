@@ -64,7 +64,7 @@ internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache,
 				/*
 				 * Still doesn't exist, it's safe to insert it since we are in the locked area.
 				 */
-				var result = await storage.Open<StockItem>().Update(Dto.AsEntity<StockItem>(State.New)) ?? throw new NullReferenceException("IStockItem expected");
+				var result = await storage.Open<StockItem>().Update(Dto.AsEntity<StockItem>(State.Add)) ?? throw new NullReferenceException("IStockItem expected");
 
 				return result.Id;
 			}
@@ -96,7 +96,7 @@ internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache,
 
 			await Task.CompletedTask;
 
-			return e.Merge(Dto, State.Default, new { Quantity = quantity });
+			return e.Merge(Dto, State.Update, new { Quantity = quantity });
 		});
 
 		return item.Id;

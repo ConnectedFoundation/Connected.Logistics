@@ -5,9 +5,9 @@ using System.Collections.Immutable;
 
 namespace Connected.Logictics.Documents.Receive.Ops;
 internal class Query(IStorageProvider storage)
-	: ServiceFunction<IQueryDto, ImmutableList<IReceiveDocument>>
+	: ServiceFunction<IQueryDto, IImmutableList<IReceiveDocument>>
 {
-	protected override async Task<ImmutableList<IReceiveDocument>> OnInvoke()
+	protected override async Task<IImmutableList<IReceiveDocument>> OnInvoke()
 	{
 		return await storage.Open<ReceiveDocument>().WithDto(Dto).AsEntities<IReceiveDocument>();
 	}

@@ -12,7 +12,7 @@ internal class Update(IStorageProvider storage, IReceiveItemService items, IEven
 	{
 		var entity = SetState(await items.Select(Dto.AsDto<IPrimaryKeyDto<long>>()) as ReceiveItem) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 
-		await storage.Open<ReceiveItem>().Update(entity.Merge(Dto, State.Default), Dto, async () =>
+		await storage.Open<ReceiveItem>().Update(entity.Merge(Dto, State.Update), Dto, async () =>
 		{
 			await cache.Remove(Dto.Id);
 

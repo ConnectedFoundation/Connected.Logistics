@@ -18,7 +18,4 @@ internal record ReceiveDocument : Document<int>, IReceiveDocument
 
 	[Ordinal(3)]
 	public int? Warehouse { get; init; }
-
-	[Ordinal(4)]
-	public DefaultDocumentStatus Status { get; init; }
 }
