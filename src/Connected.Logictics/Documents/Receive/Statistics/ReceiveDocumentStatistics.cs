@@ -1,6 +1,6 @@
 ﻿using Connected.Annotations;
 using Connected.Annotations.Entities;
-using Connected.Entities.Concurrency;
+using Connected.Entities;
 
 namespace Connected.Logictics.Documents.Receive.Statistics;
 internal record ReceiveDocumentStatistics : ConcurrentEntity<int>, IReceiveDocumentStatistics

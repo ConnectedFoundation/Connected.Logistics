@@ -8,7 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
-		<ProjectReference Include="..\Connected.Logictics.Documents.Model\Connected.Logictics.Documents.Model.csproj" />
+		<ProjectReference Include="..\Connected.Logictics.Model\Connected.Logictics.Model.csproj" />
 	</ItemGroup>
 
 </Project>

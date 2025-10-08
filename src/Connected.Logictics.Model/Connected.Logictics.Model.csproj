@@ -4,12 +4,12 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<RootNamespace>Connected.Logistics.Types</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
-		<ProjectReference Include="..\Connected.Logictics.Types.Model\Connected.Logictics.Types.Model.csproj" />
-		<ProjectReference Include="..\Connected.Logistics.Stock.Model\Connected.Logistics.Stock.Model.csproj" />
+		<ProjectReference Include="..\..\..\Connected.Documents\src\Connected.Documents.Sdk\Connected.Documents.Sdk.csproj" />
 	</ItemGroup>
 
 </Project>
