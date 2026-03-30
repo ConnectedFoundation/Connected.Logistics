@@ -1,6 +1,7 @@
 using Connected.Caching;
 using Connected.Collections.Queues;
 using Connected.Entities;
+using Connected.Logictics.Resources.Stock.Aggregations;
 using Connected.Logictics.Stock.Aggregations;
 using Connected.Logistics.Types.SerialNumbers;
 using Connected.Logistics.Types.WarehouseLocations;
@@ -83,13 +84,7 @@ internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache,
 	/// <param name="item">The stock item to be updated.</param>
 	private async Task<long> UpdateItem(StockItem item)
 	{
-		await storage.Open<StockItem>().Update(item, Dto, async () =>
-		{
-			await cache.Remove(Logistics.Stock.MetaData.StockKey, item.Id);
-
-			return SetState(await Stock.SelectItem(Dto.CreatePrimaryKey(item.Id)) as StockItem);
-		},
-		Caller,
+		await storage.Open<StockItem>().Update(item,
 		async (e) =>
 		{
 			var quantity = item.Quantity + Dto.Quantity;
@@ -97,7 +92,16 @@ internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache,
 			await Task.CompletedTask;
 
 			return e.Merge(Dto, State.Update, new { Quantity = quantity });
-		});
+		}, async () =>
+		{
+			await cache.Remove(Logistics.Stock.MetaData.StockKey, item.Id);
+
+			return SetState(await Stock.SelectItem(Dto.CreatePrimaryKey(item.Id)) as StockItem);
+		},
+		Caller);
+
+		if (IsLeaf)
+			await queue.Debounce<StockQueueMessage, StockQueueCache, StockAggregator>(item.Id);
 
 		return item.Id;
 	}
@@ -116,17 +120,5 @@ internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache,
 			return null;
 
 		return existing;
-	}
-
-	protected override async Task OnCommitted()
-	{
-		if (!IsLeaf)
-			return;
-
-		var dto = Dto.Create<IInsertOptionsDto>();
-
-		dto.Queue = "stock";
-
-		await queue.Insert<StockAggregator, IPrimaryKeyDto<long>>(Dto.CreatePrimaryKey(Result), dto);
 	}
 }
