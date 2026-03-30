@@ -12,8 +12,14 @@ using TomPIT.Logistics.Stock;
 
 namespace Connected.Logictics.Stock.Ops;
 
-internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache, IEventService events, IStockService stock,
-	ISerialNumberService serials, IQueueService queue, IWarehouseLocationService locations)
+internal sealed class UpdateStock(
+	IStorageProvider storage,
+	ICacheContext cache,
+	IEventService events,
+	IStockService stock,
+	ISerialNumberService serials,
+	IWarehouseLocationService locations,
+	IDebounceContext<StockQueueMessage, StockQueueCache, StockAggregator, long> debounce)
 	: ServiceFunction<IUpdateStockDto, long>
 {
 	private IStockService Stock { get; } = stock;
@@ -101,7 +107,7 @@ internal sealed class UpdateStock(IStorageProvider storage, ICacheContext cache,
 		Caller);
 
 		if (IsLeaf)
-			await queue.Debounce<StockQueueMessage, StockQueueCache, StockAggregator>(item.Id);
+			await debounce.Invoke(item.Id);
 
 		return item.Id;
 	}
