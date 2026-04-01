@@ -2,7 +2,7 @@
 
 namespace Connected.Logictics.Resources.Stock.Aggregations;
 
-internal sealed class StockQueueHost
-	: QueueHost<StockQueueMessage, IStockQueueCache>
+internal interface IStockQueueCache
+	: IQueueMessageCache
 {
 }

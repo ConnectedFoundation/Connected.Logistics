@@ -1,13 +1,20 @@
 using Connected.Collections.Queues;
+using Connected.Logictics.Resources.Stock.Aggregations;
 using Connected.Logistics.Types.WarehouseLocations;
 using Connected.Services;
+using Connected.Storage;
 using Microsoft.Extensions.Logging;
 using TomPIT.Logistics.Stock;
 
 namespace Connected.Logictics.Stock.Aggregations;
 
-internal sealed class StockAggregator(ILogger<StockAggregator> logger, IWarehouseLocationService locations, IStockService stock)
-	: QueueClient<IPrimaryKeyDto<long>>
+internal sealed class StockAggregator(
+	IStorageProvider storage,
+	IStockQueueCache cache,
+	ILogger<StockAggregator> logger,
+	IWarehouseLocationService locations,
+	IStockService stock)
+	: QueueClient<StockQueueMessage, IPrimaryKeyDto<long>>(storage, cache)
 {
 	private IStockService Stock { get; } = stock;
 

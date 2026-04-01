@@ -1,7 +1,5 @@
 using Connected.Caching;
-using Connected.Collections.Queues;
 using Connected.Entities;
-using Connected.Logictics.Resources.Stock.Aggregations;
 using Connected.Logictics.Stock.Aggregations;
 using Connected.Logistics.Types.SerialNumbers;
 using Connected.Logistics.Types.WarehouseLocations;
@@ -19,7 +17,7 @@ internal sealed class UpdateStock(
 	IStockService stock,
 	ISerialNumberService serials,
 	IWarehouseLocationService locations,
-	IDebounceContext<StockQueueMessage, StockQueueCache, StockAggregator, long> debounce)
+	StockAggregator queue)
 	: ServiceFunction<IUpdateStockDto, long>
 {
 	private IStockService Stock { get; } = stock;
@@ -107,7 +105,7 @@ internal sealed class UpdateStock(
 		Caller);
 
 		if (IsLeaf)
-			await debounce.Invoke(item.Id);
+			await queue.Invoke(Dto.CreatePrimaryKey(item.Id));
 
 		return item.Id;
 	}
