@@ -17,7 +17,7 @@ internal sealed class UpdateStock(
 	IStockService stock,
 	ISerialNumberService serials,
 	IWarehouseLocationService locations,
-	StockAggregator queue)
+	StockAggregatorQueueContext queue)
 	: ServiceFunction<IUpdateStockDto, long>
 {
 	private IStockService Stock { get; } = stock;
